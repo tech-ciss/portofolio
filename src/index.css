@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CISS TECH — technical dossier portfolio
+   Ink canvas, bone type, one vermilion signal. */
+
+@layer base {
+  :root {
+    --background: 60 6% 4%; /* #0a0a09 */
+    --foreground: 43 26% 92%; /* #f0ece1 */
+
+    --card: 60 4% 7%; /* #121211 */
+    --card-foreground: 43 26% 92%;
+
+    --popover: 60 4% 8%;
+    --popover-foreground: 43 26% 92%;
+
+    --primary: 13 100% 60%; /* #ff5d33 */
+    --primary-foreground: 60 6% 4%;
+
+    --secondary: 60 4% 10%;
+    --secondary-foreground: 43 26% 92%;
+
+    --muted: 60 4% 13%;
+    --muted-foreground: 45 7% 62%; /* #a19d93 */
+
+    --accent: 252 96% 67%; /* #7c5cfc, brand only */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 48 6% 17%; /* #2e2d29 */
+    --input: 48 6% 22%;
+    --ring: 13 100% 60%;
+
+    --radius: 0.25rem;
+
+    --font-body: "Inter", system-ui, sans-serif;
+    --font-display: "Bricolage Grotesque", "Space Grotesk", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .dark {
+    --background: 60 6% 4%;
+    --foreground: 43 26% 92%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+    font-feature-settings: "ss01" 1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--primary) / 0.8);
+    outline-offset: 3px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border: 3px solid hsl(var(--background));
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-[1240px] px-5 sm:px-8 lg:px-10;
+  }
+
+  .display-1 {
+    font-family: var(--font-display);
+    font-size: clamp(3.15rem, 9vw, 7.75rem);
+    line-height: 0.88;
+    letter-spacing: -0.05em;
+  }
+
+  .display-2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.1rem, 4.4vw, 3.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.038em;
+  }
+
+  .display-3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2vw, 1.85rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .eyebrow {
+    @apply font-mono text-[10px] uppercase leading-none tracking-[0.26em] text-muted-foreground sm:text-[11px];
+  }
+
+  .outline-type {
+    color: transparent;
+    -webkit-text-stroke: 1px hsl(var(--foreground) / 0.55);
+    text-stroke: 1px hsl(var(--foreground) / 0.55);
+  }
+
+  .link-sweep {
+    @apply relative inline-block;
+  }
+
+  .link-sweep::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.45s var(--ease-out-expo);
+  }
+
+  .link-sweep:hover::after,
+  .link-sweep:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .marquee-mask {
+    mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
