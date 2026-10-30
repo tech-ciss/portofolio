@@ -38,7 +38,7 @@ export const ProjectsSection = () => (
                     <div className="flex items-center gap-3">
                       <span
                         aria-hidden="true"
-                        className="font-mono text-[10px] tabular text-muted-foreground/60 transition-colors group-hover:text-primary"
+                        className="font-mono text-[10px] tabular text-muted-foreground/80 transition-colors group-hover:text-primary"
                       >
                         {`0${index + 1}`}
                       </span>
@@ -81,7 +81,7 @@ export const ProjectsSection = () => (
                           />
                         </a>
                       ) : (
-                        <span className="border border-border/70 px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-[0.16em] text-muted-foreground/70">
+                        <span className="border border-border/70 px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-[0.16em] text-muted-foreground">
                           Présentation bientôt disponible
                         </span>
                       )}
@@ -111,7 +111,7 @@ export const ProjectsSection = () => (
                     />
                     <span
                       aria-hidden="true"
-                      className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/45 to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-0"
+                      className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-0"
                     />
                   </div>
                 </article>

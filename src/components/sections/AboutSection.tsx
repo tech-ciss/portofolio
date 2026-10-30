@@ -74,7 +74,7 @@ export const AboutSection = () => (
                   <div className="flex gap-4 py-5 sm:gap-6">
                     <span
                       aria-hidden="true"
-                      className="mt-1 font-mono text-[10px] tabular text-muted-foreground/60 transition-colors group-hover:text-primary"
+                      className="mt-1 font-mono text-[10px] tabular text-muted-foreground/80 transition-colors group-hover:text-primary"
                     >
                       {`0${index + 1}`}
                     </span>

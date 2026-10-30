@@ -3,14 +3,53 @@
 @tailwind utilities;
 
 /* CISS TECH — technical dossier portfolio
-   Ink canvas, bone type, one vermilion signal. */
+   Paper by default, ink in the dark. One vermilion signal. */
 
 @layer base {
   :root {
+    --background: 44 33% 95%; /* #f6f3e9 paper */
+    --foreground: 60 8% 7%; /* #131311 ink */
+
+    --card: 44 26% 91%; /* #eee9dd */
+    --card-foreground: 60 8% 7%;
+
+    --popover: 44 30% 96%;
+    --popover-foreground: 60 8% 7%;
+
+    --primary: 13 85% 42%; /* #c63810 */
+    --primary-foreground: 44 33% 96%;
+
+    --secondary: 44 22% 88%;
+    --secondary-foreground: 60 8% 9%;
+
+    --muted: 44 20% 85%;
+    --muted-foreground: 46 10% 34%; /* #5f5b4e */
+
+    --accent: 252 72% 48%; /* brand only */
+    --accent-foreground: 44 33% 96%;
+
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 44 33% 96%;
+
+    --border: 44 18% 80%; /* #d5d0c3 */
+    --input: 44 15% 70%;
+    --ring: 13 85% 42%;
+
+    --radius: 0.25rem;
+    --glow: 0.06;
+
+    --font-body: "Inter", system-ui, sans-serif;
+    --font-display: "Bricolage Grotesque", "Space Grotesk", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .dark {
     --background: 60 6% 4%; /* #0a0a09 */
     --foreground: 43 26% 92%; /* #f0ece1 */
 
-    --card: 60 4% 7%; /* #121211 */
+    --card: 60 4% 7%;
     --card-foreground: 43 26% 92%;
 
     --popover: 60 4% 8%;
@@ -25,7 +64,7 @@
     --muted: 60 4% 13%;
     --muted-foreground: 45 7% 62%; /* #a19d93 */
 
-    --accent: 252 96% 67%; /* #7c5cfc, brand only */
+    --accent: 252 96% 67%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 55%;
@@ -35,18 +74,7 @@
     --input: 48 6% 22%;
     --ring: 13 100% 60%;
 
-    --radius: 0.25rem;
-
-    --font-body: "Inter", system-ui, sans-serif;
-    --font-display: "Bricolage Grotesque", "Space Grotesk", system-ui, sans-serif;
-    --font-mono: "JetBrains Mono", ui-monospace, monospace;
-
-    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .dark {
-    --background: 60 6% 4%;
-    --foreground: 43 26% 92%;
+    --glow: 0.08;
   }
 
   * {
@@ -179,6 +207,17 @@
 
   .marquee-mask {
     mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+  }
+
+  /* Paper grain is multiplied, film grain is screened over ink. */
+  .grain {
+    mix-blend-mode: multiply;
+    opacity: 0.06;
+  }
+
+  .dark .grain {
+    mix-blend-mode: soft-light;
+    opacity: 0.05;
   }
 }
 

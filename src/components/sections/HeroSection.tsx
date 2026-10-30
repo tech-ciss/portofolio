@@ -166,7 +166,7 @@ export const HeroSection = () => {
               />
               <div
                 aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-t from-background/55 via-transparent to-transparent"
+                className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent"
               />
             </div>
 

@@ -1,0 +1,39 @@
+name: Qualité du portfolio
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: TypeScript, lint, tests et build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v7
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Vérifier la qualité
+        run: npm run check
+
+      - name: Vérifier les vulnérabilités
+        run: npm audit --audit-level=high

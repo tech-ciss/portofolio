@@ -4,6 +4,8 @@ import clsx from "clsx";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { BrandLogo } from "@/components/ui/BrandLogo";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { useTheme } from "@/hooks/use-theme";
 import { navLinks } from "@/lib/content";
 import { siteConfig } from "@/lib/site-config";
 
@@ -15,6 +17,7 @@ export const Navigation = () => {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll();
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const sections = navLinks.flatMap((link) => {
@@ -105,7 +108,7 @@ export const Navigation = () => {
               <BrandLogo />
             </a>
 
-            <div className="hidden items-center gap-7 md:flex">
+            <div className="hidden items-center gap-4 md:flex lg:gap-7">
               {navLinks.map((link) => {
                 const isActive = active === link.href;
 
@@ -122,8 +125,8 @@ export const Navigation = () => {
                     <span
                       aria-hidden="true"
                       className={clsx(
-                        "text-[9px] tabular transition-colors",
-                        isActive ? "text-primary" : "text-muted-foreground/50",
+                        "hidden text-[9px] tabular transition-colors lg:inline",
+                        isActive ? "text-primary" : "text-muted-foreground/70",
                       )}
                     >
                       {link.index}
@@ -140,7 +143,9 @@ export const Navigation = () => {
                 );
               })}
 
-              <AnimatedButton size="sm" asChild className="ml-1">
+              <ThemeToggle theme={theme} onToggle={toggleTheme} />
+
+              <AnimatedButton size="sm" asChild>
                 <a href="#contact">
                   Discutons
                   <ArrowUpRight className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -148,16 +153,20 @@ export const Navigation = () => {
               </AnimatedButton>
             </div>
 
-            <button
-              ref={menuButtonRef}
-              aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
-              aria-expanded={isMobileMenuOpen}
-              aria-controls="mobile-menu"
-              className="-mr-2 flex h-11 w-11 items-center justify-center text-foreground md:hidden"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
+            <div className="flex items-center gap-1 md:hidden">
+              <ThemeToggle theme={theme} onToggle={toggleTheme} className="h-10 w-10" />
+
+              <button
+                ref={menuButtonRef}
+                aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+                aria-expanded={isMobileMenuOpen}
+                aria-controls="mobile-menu"
+                className="-mr-2 flex h-11 w-11 items-center justify-center text-foreground"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+              </button>
+            </div>
           </nav>
         </div>
       </motion.header>
@@ -176,7 +185,7 @@ export const Navigation = () => {
             transition={{ duration: 0.25 }}
             className="fixed inset-0 z-40 flex flex-col justify-between overflow-y-auto bg-background px-5 pb-10 pt-24 sm:px-8"
           >
-            <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-noise opacity-[0.05]" />
+            <div aria-hidden="true" className="grain pointer-events-none absolute inset-0 bg-noise" />
 
             <nav className="relative flex flex-col border-t border-border/70">
               {navLinks.map((link, index) => (
